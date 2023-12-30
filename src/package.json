@@ -1,0 +1,29 @@
+{
+  "name": "dependabot-fail-task",
+  "version": "1.0.0",
+  "author": "Robyn",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/underrobyn/dependabot-fail-task.git"
+  },
+  "keywords": [
+    "dependabot",
+    "azure",
+    "pipelines",
+    "devops"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/underrobyn/dependabot-fail-task/issues"
+  },
+  "homepage": "https://github.com/underrobyn/dependabot-fail-task#readme",
+  "dependencies": {
+    "azure-devops-extension-sdk": "^4.0.2",
+    "azure-pipelines-task-lib": "^5.0.1-preview.0"
+  }
+}

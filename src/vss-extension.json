@@ -1,0 +1,21 @@
+{
+  "manifestVersion": 1,
+  "id": "dependabot-fail-task",
+  "publisher": "",
+  "version": "1.0.0",
+  "name": "Dependabot Fail Task",
+  "description": "Fail a pipeline based on dependabot alerts open on a repo",
+  "public": false,
+  "categories": ["Azure Pipelines"],
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "contributions": [
+
+  ],
+  "files": [
+
+  ]
+}
