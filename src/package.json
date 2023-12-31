@@ -33,7 +33,6 @@
     "@octokit/plugin-paginate-rest": "^9.1.5",
     "@octokit/rest": "^20.0.2",
     "@octokit/types": "^12.4.0",
-    "azure-devops-extension-sdk": "^4.0.2",
     "azure-pipelines-task-lib": "^5.0.1-preview.0"
   },
   "devDependencies": {

@@ -9,8 +9,5 @@
   },
   "include": [
     "task/*"
-  ],
-  "exclude": [
-    "node_modules/*"
   ]
 }
