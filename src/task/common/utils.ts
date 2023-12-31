@@ -6,3 +6,11 @@ export function getRelativeMinutesFromNow(date: Date): string {
 
     return formatter.format(minutesDifference, 'minute');
 }
+
+export function getApiSeverityString(severity: string): string {
+    return {
+        'low': 'low,moderate,high,critical',
+        'moderate': 'moderate,high,critical',
+        'high': 'high,critical'
+    }[severity] || 'critical';
+}

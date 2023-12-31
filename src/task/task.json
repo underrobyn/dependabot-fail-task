@@ -57,10 +57,10 @@
       "helpMarkDown": "GitHub service connection - recommended way to contact API"
     },
     {
-      "name": "githubPersonalAccessToken",
+      "name": "githubToken",
       "type": "string",
       "groupName": "github_connection",
-      "label": "GitHub Personal Access Token.",
+      "label": "GitHub Token",
       "defaultValue": "",
       "required": false,
       "helpMarkDown": "Personal Access Token used for accessing GitHub repositories."
