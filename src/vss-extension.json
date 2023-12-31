@@ -7,6 +7,18 @@
   "description": "Fail a pipeline based on dependabot alerts open on a repo",
   "public": false,
   "categories": ["Azure Pipelines"],
+  "icons": {
+    "default": "images/dependabot-fail-task.png"
+  },
+  "tags": [
+    "dependabot",
+    "build",
+    "fail",
+    "github"
+  ],
+  "scopes": [
+    "vso.serviceendpoint"
+  ],
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
