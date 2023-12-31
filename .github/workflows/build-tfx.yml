@@ -38,6 +38,9 @@ jobs:
         run: npm run build
         working-directory: '${{ github.workspace }}/src'
 
+      - name: Install tfx-cli
+        run: npm i -g tfx-cli@0.16.0
+
       - name: Package (Dev)
         run: >
           tfx extension create
