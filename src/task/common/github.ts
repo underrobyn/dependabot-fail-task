@@ -1,5 +1,6 @@
 import * as tl from 'azure-pipelines-task-lib/task';
-import {Octokit} from "@octokit/rest";
+import {Octokit} from "@octokit/core";
+import {paginateRest} from "@octokit/plugin-paginate-rest";
 import {createTokenAuth} from "@octokit/auth-token";
 
 export interface DependabotAlert {
@@ -17,10 +18,12 @@ export interface DependabotAlert {
 async function getGitHubInstance() {
     tl.debug('Fetching GitHub instance');
 
+    const OktokitPaginate = Octokit.plugin(paginateRest);
+
     const auth = createTokenAuth(getGitHubToken());
     const authentication = await auth();
 
-    return new Octokit({
+    return new OktokitPaginate({
         auth: authentication.token,
     });
 }

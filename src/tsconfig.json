@@ -2,6 +2,15 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     "target": "es2020",
-    "module": "commonjs"
-  }
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "types": []
+  },
+  "include": [
+    "task/*"
+  ],
+  "exclude": [
+    "node_modules/*"
+  ]
 }
