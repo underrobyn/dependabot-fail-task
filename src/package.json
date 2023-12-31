@@ -1,9 +1,12 @@
 {
   "name": "dependabot-fail-task",
   "version": "1.0.0",
-  "author": "Robyn",
+  "author": "robyn",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +26,8 @@
   },
   "homepage": "https://github.com/underrobyn/dependabot-fail-task#readme",
   "dependencies": {
+    "@octokit/auth-token": "^4.0.0",
+    "@octokit/rest": "^20.0.2",
     "azure-devops-extension-sdk": "^4.0.2",
     "azure-pipelines-task-lib": "^5.0.1-preview.0"
   }

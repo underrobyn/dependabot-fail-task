@@ -1,0 +1,75 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+  "id": "13ce5c61-00ca-49a0-8ce4-7c5aefcbfb0f",
+  "name": "dependabot-fail-task",
+  "friendlyName": "Dependabot Fail Task",
+  "description": "Fail a pipeline based on dependabot alerts for a repo",
+  "helpUrl": "https://github.com/underrobyn/dependabot-fail-task/tree/main/docs",
+  "category": "Azure Pipelines",
+  "visibility": ["Build", "Release"],
+  "showEnvironmentVariables": true,
+  "runsOn": ["Agent"],
+  "author": "robyn",
+  "demands": [],
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "instanceNameFormat": "Dependabot Fail Task",
+  "minimumAgentVersion": "2.105.0",
+  "groups": [
+    {
+      "name": "fail_conditions",
+      "displayName": "Failure Conditions",
+      "isExpanded": true
+    },
+    {
+      "name": "github_connection",
+      "displayName": "GitHub Connection",
+      "isExpanded": true
+    }
+  ],
+  "inputs": [
+    {
+      "name": "failSeverity",
+      "type": "pickList",
+      "groupName": "fail_conditions",
+      "label": "Fail on severity",
+      "defaultValue": "critical",
+      "required": true,
+      "helpMarkDown": "The severity to fail on. If any alerts are detected at or above this level, the task will fail.",
+      "options": {
+        "low": "Low",
+        "moderate": "Moderate",
+        "high": "High",
+        "critical": "Critical"
+      }
+    },
+
+    {
+      "name": "githubServiceConnection",
+      "type": "connectedService:github:OAuth,PersonalAccessToken,InstallationToken,Token",
+      "groupName": "github_connection",
+      "label": "GitHub connection (PAT)",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "GitHub service connection - recommended way to contact API"
+    },
+    {
+      "name": "githubPersonalAccessToken",
+      "type": "string",
+      "groupName": "github_connection",
+      "label": "GitHub Personal Access Token.",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Personal Access Token used for accessing GitHub repositories."
+    }
+  ],
+  "dataSourceBindings": [],
+  "execution": {
+    "Node16": {
+      "target": "task.js"
+    }
+  }
+}
