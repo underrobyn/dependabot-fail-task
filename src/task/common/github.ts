@@ -2,6 +2,7 @@ import * as tl from 'azure-pipelines-task-lib/task';
 import {Octokit} from "@octokit/core";
 import {paginateRest} from "@octokit/plugin-paginate-rest";
 import {createTokenAuth} from "@octokit/auth-token";
+import fetch from "node-fetch";
 
 export interface DependabotAlert {
     security_advisory: {
@@ -25,6 +26,9 @@ async function getGitHubInstance() {
 
     return new OktokitPaginate({
         auth: authentication.token,
+        request: {
+            fetch: fetch,
+        },
     });
 }
 
