@@ -32,7 +32,7 @@
         "ms.vss-distributed-task.tasks"
       ],
       "properties": {
-        "name": "src/task"
+        "name": "task"
       }
     }
   ],
