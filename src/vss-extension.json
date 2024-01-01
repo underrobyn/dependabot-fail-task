@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "dependabot-fail-task",
-  "publisher": "robyn",
+  "publisher": "robyn-zip",
   "version": "1.0.0",
   "name": "Dependabot Fail Task",
   "description": "Fail a pipeline based on dependabot alerts open on a repo",

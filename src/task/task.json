@@ -9,7 +9,7 @@
   "visibility": ["Build", "Release"],
   "showEnvironmentVariables": true,
   "runsOn": ["Agent"],
-  "author": "robyn",
+  "author": "robyn-zip",
   "demands": [],
   "version": {
     "Major": 1,
