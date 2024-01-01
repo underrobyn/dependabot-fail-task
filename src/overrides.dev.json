@@ -1,6 +1,6 @@
 {
   "id": "dependabot-fail-task-dev",
-  "version": "0.2.0.0",
+  "version": "0.2.0.1",
   "name": "Dependabot Fail Task (Dev)",
   "description": "Development version of Dependabot fail task"
 }
