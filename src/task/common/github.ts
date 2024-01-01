@@ -2,7 +2,7 @@ import * as tl from 'azure-pipelines-task-lib/task';
 import {Octokit} from "@octokit/core";
 import {paginateRest} from "@octokit/plugin-paginate-rest";
 import {createTokenAuth} from "@octokit/auth-token";
-import fetch from "node-fetch";
+import * as nodeFetch from "node-fetch";
 
 export interface DependabotAlert {
     security_advisory: {
@@ -19,16 +19,19 @@ export interface DependabotAlert {
 async function getGitHubInstance() {
     tl.debug('Fetching GitHub instance');
 
-    const OktokitPaginate = Octokit.plugin(paginateRest);
+    console.log("Type of native fetch:", typeof fetch);
+    console.log("Type of node-fetch:", typeof nodeFetch);
+
+    const OctokitPaginate = Octokit.plugin(paginateRest);
 
     const auth = createTokenAuth(getGitHubToken());
     const authentication = await auth();
 
-    return new OktokitPaginate({
+    return new OctokitPaginate({
         auth: authentication.token,
         request: {
-            fetch: fetch,
-        },
+            fetch: nodeFetch,
+        }
     });
 }
 
