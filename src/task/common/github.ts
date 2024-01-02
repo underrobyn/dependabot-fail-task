@@ -23,11 +23,12 @@ async function getGitHubInstance() {
     const OctokitPaginate = Octokit.plugin(paginateRest);
     const auth = createTokenAuth(getGitHubToken());
     const authentication = await auth();
+    const fetchImplementation = typeof(fetch) === "undefined" ? nodeFetch : fetch;
 
     return new OctokitPaginate({
         auth: authentication.token,
         request: {
-            fetch: fetch || nodeFetch,
+            fetch: fetchImplementation,
         }
     });
 }
