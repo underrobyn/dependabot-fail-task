@@ -3,6 +3,7 @@ import {Octokit} from "@octokit/core";
 import {paginateRest} from "@octokit/plugin-paginate-rest";
 import {createTokenAuth} from "@octokit/auth-token";
 import * as nodeFetch from "node-fetch";
+import { taskError } from "./utils";
 
 export interface DependabotAlert {
     security_advisory: {
@@ -19,18 +20,14 @@ export interface DependabotAlert {
 async function getGitHubInstance() {
     tl.debug('Fetching GitHub instance');
 
-    console.log("Type of native fetch:", typeof fetch);
-    console.log("Type of node-fetch:", typeof nodeFetch);
-
     const OctokitPaginate = Octokit.plugin(paginateRest);
-
     const auth = createTokenAuth(getGitHubToken());
     const authentication = await auth();
 
     return new OctokitPaginate({
         auth: authentication.token,
         request: {
-            fetch: nodeFetch,
+            fetch: fetch || nodeFetch,
         }
     });
 }
@@ -83,7 +80,7 @@ export async function getDependabotData(owner: string, repoName: string, severit
         return response;
     } catch (error) {
         tl.error(`Error: ${error.message}`);
-        tl.setResult(tl.TaskResult.Failed, `Failed to get GitHub API data: ${error.message}`);
+        taskError(`Failed to get GitHub API data: ${error.message}`);
         return []
     }
 }
@@ -130,5 +127,5 @@ function getGitHubToken() {
         return token;
     }
 
-    throw new Error('No authentication method was supplied for the task!');
+    taskError(`No authentication method was supplied for the task!`);
 }

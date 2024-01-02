@@ -1,3 +1,5 @@
+import * as tl from 'azure-pipelines-task-lib/task';
+
 export function getRelativeMinutesFromNow(date: Date): string {
     const formatter = new Intl.RelativeTimeFormat('en', { style: 'narrow' });
 
@@ -13,4 +15,11 @@ export function getApiSeverityString(severity: string): string {
         'moderate': 'moderate,high,critical',
         'high': 'high,critical'
     }[severity] || 'critical';
+}
+
+export function taskError(message: string): void {
+    const failOnError = tl.getBoolInput("failOnError");
+    const exitResult = failOnError ? tl.TaskResult.Failed : tl.TaskResult.Cancelled;
+
+    tl.setResult(exitResult, message);
 }
