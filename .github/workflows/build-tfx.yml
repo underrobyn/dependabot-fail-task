@@ -26,6 +26,25 @@ jobs:
         with:
           node-version: '18.x'
 
+      - name: Version Artifact
+        run: |
+          # Update task patch number to match build number
+          echo "`jq '.version.Patch=${{ github.run_number }}' src/task/task.json`" > src/task/task.json
+          
+          # Current version from vss-extension manifest
+          current_version=$(jq -r '.version' src/vss-extension.json)
+          
+          # Increment with build number as patch
+          IFS='.' read -ra version_parts <<< "$current_version"
+          version_parts[2]="${GITHUB_RUN_NUMBER:-0}"
+          updated_version=$(IFS='.'; echo "${version_parts[*]}")
+          
+          # Update versions in overrides files
+          jq ".version |= \"0.$updated_version\"" src/overrides.dev.json > src/overrides.dev.json.tmp && mv src/overrides.dev.json.tmp src/overrides.dev.json
+          jq ".version |= \"$updated_version\"" src/overrides.prod.json > src/overrides.prod.json.tmp && mv src/overrides.prod.json.tmp src/overrides.prod.json
+          
+          echo -e "New versions are ->\n\tDev: 0.$updated_version\n\tProd: $updated_version"
+
       - name: Install
         run: npm install
         working-directory: '${{ github.workspace }}/src'
