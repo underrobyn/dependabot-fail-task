@@ -52,12 +52,13 @@
       "groupName": "fail_conditions",
       "label": "Audit mode",
       "defaultValue": false,
-      "required": true,
+      "required": false,
       "helpMarkDown": "Select this option if you want the task to return a warning instead of failing the pipeline when alerts are detected."
     },
     {
       "name": "failOnError",
       "type": "boolean",
+      "groupName": "fail_conditions",
       "label": "Fail the task on error",
       "defaultValue": true,
       "required": false,

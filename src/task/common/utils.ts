@@ -19,6 +19,8 @@ export function getApiSeverityString(severity: string): string {
 
 export function taskError(message: string): void {
     const failOnError = tl.getBoolInput("failOnError");
+    tl.debug(`failOnError: ${failOnError}`);
+
     const exitResult = failOnError ? tl.TaskResult.Failed : tl.TaskResult.Cancelled;
 
     tl.setResult(exitResult, message);
