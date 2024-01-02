@@ -82,6 +82,15 @@
       "defaultValue": "",
       "required": false,
       "helpMarkDown": "Personal Access Token used for accessing GitHub repositories (requires security_events scope)"
+    },
+    {
+      "name": "enterpriseServerUrl",
+      "type": "string",
+      "groupName": "github_connection",
+      "label": "Enterprise Server URL (if applicable)",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "If you use GitHub Enterprise Server, specify API URL here, e.g. https://github.acme-inc.com/api/v3"
     }
   ],
   "dataSourceBindings": [],

@@ -44,9 +44,9 @@ export default async function failTask() {
         });
 
         // If in audit mode then we will succeed with issues, else we fail the task to halt the pipeline.
-
         const taskResult = auditMode ? tl.TaskResult.SucceededWithIssues : tl.TaskResult.Failed;
         tl.setResult(taskResult, 'Dependabot alerts caused pipeline failure.');
+
         return;
     }
 

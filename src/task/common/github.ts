@@ -25,12 +25,21 @@ async function getGitHubInstance() {
     const authentication = await auth();
     const fetchImplementation = typeof(fetch) === "undefined" ? nodeFetch : fetch;
 
-    return new OctokitPaginate({
+    let config = {
         auth: authentication.token,
         request: {
             fetch: fetchImplementation,
         }
-    });
+    };
+
+    // If enterprise server URL specified, use as baseUrl
+    const enterpriseServerUrl = tl.getInput('enterpriseServerUrl');
+    if (enterpriseServerUrl) {
+        config['baseUrl'] = enterpriseServerUrl;
+        tl.debug(`Setting Octokit baseURL to ${enterpriseServerUrl}`);
+    }
+
+    return new OctokitPaginate(config);
 }
 
 export async function getRateLimitInfo() {
