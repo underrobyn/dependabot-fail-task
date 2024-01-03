@@ -24,6 +24,22 @@
       "id": "Microsoft.VisualStudio.Services"
     }
   ],
+  "branding": {
+    "color": "rgb(58, 99, 200)",
+    "theme": "dark"
+  },
+  "content": {
+    "details": {
+      "path": "src/README.md"
+    },
+    "license": {
+      "path": "src/LICENSE.md"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "uri": "https://github.com/underrobyn/dependabot-fail-task"
+  },
   "contributions": [
     {
       "id": "DependabotFailTask",

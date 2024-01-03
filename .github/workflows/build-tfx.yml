@@ -61,7 +61,8 @@ jobs:
 
       - name: Update task files
         run: |
-          cp $GITHUB_WORKSPACE/README.md $GITHUB_WORKSPACE/src/vss-extension.md
+          cp $GITHUB_WORKSPACE/README.md $GITHUB_WORKSPACE/src/README.md
+          cp $GITHUB_WORKSPACE/LICENSE $GITHUB_WORKSPACE/src/LICENSE.md
 
       - name: Package (Dev)
         run: >
