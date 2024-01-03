@@ -60,7 +60,7 @@ jobs:
         run: npm i -g tfx-cli@$TFX_VERSION
 
       - name: Update task files
-        run:
+        run: |
           cp $GITHUB_WORKSPACE/README.md $GITHUB_WORKSPACE/src/task/overview.md
           rm -rf $GITHUB_WORKSPACE/**/*.ts
 
