@@ -1,5 +1,8 @@
 name: Build
 
+env:
+  TFX_VERSION: "0.16.0"
+
 on:
   push:
     branches:
@@ -45,6 +48,9 @@ jobs:
           
           echo -e "New versions are ->\n\tDev: 0.$updated_version\n\tProd: $updated_version"
 
+      - name: Copy Files
+        run: cp $GITHUB_WORKSPACE/README.md $GITHUB_WORKSPACE/src/overview.md
+
       - name: Install
         run: npm install
         working-directory: '${{ github.workspace }}/src'
@@ -54,7 +60,7 @@ jobs:
         working-directory: '${{ github.workspace }}/src'
 
       - name: Install tfx-cli
-        run: npm i -g tfx-cli@0.16.0
+        run: npm i -g tfx-cli@$TFX_VERSION
 
       - name: Package (Dev)
         run: >
@@ -76,4 +82,40 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: ${{ github.workspace }}/builds/*
-          name: 'task-build-${{ github.run_number }}'
+          name: dependabot-fail-task
+
+  Publish:
+    runs-on: ubuntu-latest
+    needs: [ Build ]
+
+    steps:
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dependabot-fail-task
+
+      - name: Install tfx-cli
+        run: npm i -g tfx-cli@$TFX_VERSION
+
+      # Docs: https://learn.microsoft.com/en-us/azure/devops/extend/publish/command-line?view=azure-devops
+      - name: Publish (Dev)
+        if: github.ref == 'refs/heads/main'
+        run: >
+          tfx extension publish
+          --vsix $GITHUB_WORKSPACE/dev/*.vsix
+          --auth-type pat
+          --token ${{ secrets.AZURE_DEVOPS_PAT }}
+          --share-with robyn-zip-testing
+
+      - name: Publish (Prod)
+        if: startsWith(github.ref, 'refs/tags/')
+        run: >
+          tfx extension publish
+          --vsix $GITHUB_WORKSPACE/prod/*.vsix
+          --auth-type pat
+          --token ${{ secrets.AZURE_DEVOPS_PAT }}
