@@ -30,10 +30,10 @@
   },
   "content": {
     "details": {
-      "path": "src/README.md"
+      "path": "README.md"
     },
     "license": {
-      "path": "src/LICENSE.md"
+      "path": "LICENSE.md"
     }
   },
   "repository": {
