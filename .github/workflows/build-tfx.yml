@@ -48,9 +48,6 @@ jobs:
           
           echo -e "New versions are ->\n\tDev: 0.$updated_version\n\tProd: $updated_version"
 
-      - name: Copy Files
-        run: cp $GITHUB_WORKSPACE/README.md $GITHUB_WORKSPACE/src/overview.md
-
       - name: Install
         run: npm install
         working-directory: '${{ github.workspace }}/src'
@@ -61,6 +58,11 @@ jobs:
 
       - name: Install tfx-cli
         run: npm i -g tfx-cli@$TFX_VERSION
+
+      - name: Update task files
+        run:
+          cp $GITHUB_WORKSPACE/README.md $GITHUB_WORKSPACE/src/task/overview.md
+          rm -rf $GITHUB_WORKSPACE/**/*.ts
 
       - name: Package (Dev)
         run: >
